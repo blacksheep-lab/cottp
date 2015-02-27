@@ -41,26 +41,26 @@ class PlainTextFileHandler(FileInterface):
 	def __init__(self,filePath,mode='r'):
 		super(PlainTextFileHandler, self).__init__(filePath)
 		self.fd = None
-		self.mode(mode)
+		self.mode = mode
 		
 	@property
 	def mode(self):
 		return self._mode
 		
 	@mode.setter	
-	def mode(self,mode):
+	def mode(self, mode):
 		'''set the mode to open the file '''
 		self._mode = str(mode)
 
 	def __enter__(self):
-		self.fd = open(filepath, mode=self.mode)
+		self.fd = open(self.filePath, mode=self.mode)
 	
 	def __exit__(self, type, value, tb):
 		self.fd.close()
 		self.fd = None
 		
 	def __getattr__(self, attr):
-		if hasattr(self.fd, attr):
+		if self.fd and hasattr(self.fd, attr):
 			def wrapper(*args, **kw):
 				return getattr(self.fd, attr)(*args, **kw)
 			return wrapper
