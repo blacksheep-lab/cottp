@@ -8,7 +8,7 @@ class FileError(Exception):
 	Attributes:
 		path -- path to the file that is generating the errors
 		msg -- explanation of the errors
-    '''
+        '''
 	def __init__(self, path, msg):
 		self.path = path
 		self.msg = msg
@@ -66,7 +66,7 @@ class PlainTextFileHandler(FileInterface):
 			return wrapper
 		raise AttributeError(attr)
 		
-	#to implement getter setter things read this (use for mode attr) 	
+	#to implement getter setter     things read this (use for mode attr) 	
 	#https://docs.python.org/2/library/functions.html#property
 	
 	
